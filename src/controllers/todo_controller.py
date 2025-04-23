@@ -30,7 +30,6 @@ def delete_todo(id):
 @todo_blueprint.route("/update/<int:id>", methods=["PUT"])
 def update_todo(id):
     request_data = request.get_json()
-    # TODO: Partial validation
     schema = TodoSchema(partial=True)
     try:
         validated_data = schema.load(request_data)
