@@ -6,3 +6,4 @@ class Todo(db.Model):
     title = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
     completed = db.Column(db.Boolean)
+    created_at = db.Column(db.DateTime)

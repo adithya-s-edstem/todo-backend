@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from datetime import datetime
 from typing import List
 
 @dataclass
@@ -12,6 +13,7 @@ class TodoDto:
     title: str
     description: str
     completed: bool
+    created_at: datetime
 
     def to_dict(self):
         result = {
@@ -19,6 +21,7 @@ class TodoDto:
             "title": self.title,
             "description": self.description,
             "completed": self.completed,
+            "created_at": self.created_at.timestamp(),
         }
         return result
 

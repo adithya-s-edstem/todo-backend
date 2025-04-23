@@ -1,3 +1,4 @@
+from datetime import datetime
 from ..contracts.todo_dto import TodoCreateDto, TodoDto, TodoListDto
 from ..repositories.todo_repository import TodoRepository
 from ..models.todo_model import Todo
@@ -13,7 +14,8 @@ class TodoService:
             id=todo.id,
             title=todo.title,
             description=todo.description,
-            completed=todo.completed
+            completed=todo.completed,
+            created_at=todo.created_at
         ) for todo in all_todos]
 
         return TodoListDto(todos=todos_dto).to_dict()
@@ -24,6 +26,7 @@ class TodoService:
             title=todo_details.title,
             description=todo_details.description,
             completed=False,
+            created_at=datetime.now()
         )
 
         saved_todo = self.todo_repository.save_todo(todo_object)
@@ -33,6 +36,7 @@ class TodoService:
             title=saved_todo.title,
             description=saved_todo.description,
             completed=saved_todo.completed,
+            created_at=saved_todo.created_at
         ).to_dict()
 
     def delete_todo(self, todo_id):
@@ -46,6 +50,7 @@ class TodoService:
             title=updated_todo.title,
             description=updated_todo.description,
             completed=updated_todo.completed,
+            created_at=updated_todo.create_at
         ).to_dict()
 
     def delete_all_todos(self):
