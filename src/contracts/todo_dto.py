@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import List
 
 @dataclass
 class TodoCreateDto:
@@ -6,7 +7,7 @@ class TodoCreateDto:
     description: str
 
 @dataclass
-class TodoCreatedResponseDto:
+class TodoDto:
     id: int
     title: str
     description: str
@@ -20,3 +21,12 @@ class TodoCreatedResponseDto:
             "completed": self.completed,
         }
         return result
+
+@dataclass
+class TodoListDto:
+    todos: List[TodoDto]
+
+    def to_dict(self):
+        return {
+            "todos": [todo.to_dict() for todo in self.todos]
+        }

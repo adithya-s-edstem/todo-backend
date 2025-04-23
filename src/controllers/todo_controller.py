@@ -24,6 +24,11 @@ def add_todo():
 
 @todo_blueprint.route("/delete/<int:id>", methods=["DELETE"])
 def delete_todo(id):
-    todo_service.remove_todo(todo_id=id)
+    todo_service.delete_todo(todo_id=id)
     return jsonify({"message": f"Deleted todo {id}"})
 
+@todo_blueprint.route("/update/<int:id>", methods=["PUT"])
+def update_todo(id):
+    request_data = request.get_json()
+    updated_todo = todo_service.update_todo(todo_id=id, data=request_data)
+    return jsonify(updated_todo)
