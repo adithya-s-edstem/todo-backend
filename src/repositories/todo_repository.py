@@ -15,3 +15,13 @@ class TodoRepository:
             return todo
 
         return handle_db_operation(save_operation)
+
+    def delete_todo(self, todo_id):
+        def delete_operation():
+            todo = Todo.query.filter_by(id=todo_id).first()
+            if todo is None:
+                raise ValueError(f"Todo with id {todo_id} does not exist.")
+            db.session.delete(todo)
+            db.session.commit()
+
+        return handle_db_operation(delete_operation)

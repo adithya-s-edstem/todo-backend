@@ -21,3 +21,9 @@ def add_todo():
         return jsonify(created_todo)
     except ValidationError as e:
         return jsonify({"errors": e.messages}), 400
+
+@todo_blueprint.route("/delete/<int:id>", methods=["DELETE"])
+def delete_todo(id):
+    todo_service.remove_todo(todo_id=id)
+    return jsonify({"message": f"Deleted todo {id}"})
+

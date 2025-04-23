@@ -25,3 +25,7 @@ class TodoService:
             description=saved_todo.description,
             completed=saved_todo.completed,
         ).to_dict()
+
+    def remove_todo(self, todo_id):
+        self.todo_repository.delete_todo(todo_id=todo_id)
+        return
