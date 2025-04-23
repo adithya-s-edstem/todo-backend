@@ -7,6 +7,9 @@ class Config:
         self.database_name = os.environ.get("DATABASE_NAME", "tododb")
         self.database_user = os.environ.get("DATABASE_USER", "postgres")
         self.database_password = os.environ.get("DATABASE_PASSWORD", "postgres")
+        self.allowed_origins =[
+            "http://localhost:5173"
+        ]
 
     @property
     def get_sqlalchemy_settings(self):
@@ -17,5 +20,9 @@ class Config:
         }
 
         return sqlalchemy_settings
+
+    @property
+    def get_cors_config(self):
+        return self.allowed_origins
 
 config = Config()

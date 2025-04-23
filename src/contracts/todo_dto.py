@@ -27,6 +27,4 @@ class TodoListDto:
     todos: List[TodoDto]
 
     def to_dict(self):
-        return {
-            "todos": [todo.to_dict() for todo in self.todos]
-        }
+        return [todo.to_dict() for todo in self.todos]

@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_migrate import Migrate
+from flask_cors import CORS
 from .models import db, init_models
 from .routes import register_routes
 from .config import config
@@ -9,6 +10,7 @@ migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
     app.config.update(config.get_sqlalchemy_settings)
     db.init_app(app)
     ma.init_app(app)
