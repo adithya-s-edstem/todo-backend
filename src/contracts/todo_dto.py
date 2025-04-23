@@ -21,7 +21,7 @@ class TodoDto:
             "title": self.title,
             "description": self.description,
             "completed": self.completed,
-            "created_at": self.created_at.timestamp(),
+            "created_at": self.created_at.isoformat(),
         }
         return result
 
