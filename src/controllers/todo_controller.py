@@ -25,15 +25,21 @@ def add_todo():
 @todo_blueprint.route("/delete/<int:id>", methods=["DELETE"])
 def delete_todo(id):
     todo_service.delete_todo(todo_id=id)
-    return jsonify({"message": f"Deleted todo {id}"})
+    return jsonify({"message": f"Deleted todo {id}"}), 200
 
 @todo_blueprint.route("/update/<int:id>", methods=["PUT"])
 def update_todo(id):
     request_data = request.get_json()
-    updated_todo = todo_service.update_todo(todo_id=id, data=request_data)
-    return jsonify(updated_todo)
+    # TODO: Partial validation
+    schema = TodoSchema(partial=True)
+    try:
+        validated_data = schema.load(request_data)
+        updated_todo = todo_service.update_todo(todo_id=id, data=validated_data)
+        return jsonify(updated_todo)
+    except ValidationError as e:
+        return jsonify({"errors": e.messages}), 400
 
 @todo_blueprint.route("/delete/all", methods=["DELETE"])
 def delete_all_todos():
     todo_service.delete_all_todos()
-    return jsonify({"message": "Deleted all todos"})
+    return jsonify({"message": "Deleted all todos"}), 200
