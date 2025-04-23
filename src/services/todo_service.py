@@ -50,7 +50,7 @@ class TodoService:
             title=updated_todo.title,
             description=updated_todo.description,
             completed=updated_todo.completed,
-            created_at=updated_todo.create_at
+            created_at=updated_todo.created_at
         ).to_dict()
 
     def delete_all_todos(self):

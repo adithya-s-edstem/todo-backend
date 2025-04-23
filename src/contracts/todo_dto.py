@@ -30,4 +30,5 @@ class TodoListDto:
     todos: List[TodoDto]
 
     def to_dict(self):
-        return [todo.to_dict() for todo in self.todos]
+        sorted_todos = sorted(self.todos, key=lambda todo: todo.created_at, reverse=True)
+        return [todo.to_dict() for todo in sorted_todos]
