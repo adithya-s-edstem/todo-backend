@@ -39,3 +39,9 @@ class TodoRepository:
             db.session.refresh(existing_todo)
             return existing_todo
         return handle_db_operation(update_operation)
+
+    def delete_all_todos(self):
+        def delete_all_operation():
+            Todo.query.delete()
+            db.session.commit()
+        return handle_db_operation(delete_all_operation)

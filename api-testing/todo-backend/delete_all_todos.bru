@@ -1,0 +1,11 @@
+meta {
+  name: delete_all_todos
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{baseUrl}}/delete/all
+  body: none
+  auth: inherit
+}

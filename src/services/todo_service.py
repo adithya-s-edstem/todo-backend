@@ -47,3 +47,7 @@ class TodoService:
             description=updated_todo.description,
             completed=updated_todo.completed,
         ).to_dict()
+
+    def delete_all_todos(self):
+        self.todo_repository.delete_all_todos()
+        return
