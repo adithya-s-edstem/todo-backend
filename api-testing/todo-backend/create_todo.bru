@@ -1,0 +1,18 @@
+meta {
+  name: create_todo
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/add
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "Todo title",
+    "description": "Todo description"
+  }
+}

@@ -3,7 +3,6 @@ from ..models import db
 def handle_db_operation(operation):
     try:
         result = operation()
-        db.session.commit()
         return result
     except Exception as e:
         db.session.rollback()
@@ -11,3 +10,4 @@ def handle_db_operation(operation):
         raise e
     finally:
         db.session.close()
+
