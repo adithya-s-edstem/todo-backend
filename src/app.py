@@ -10,7 +10,7 @@ migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
-    CORS(app)
+    CORS(app, origins=config.get_cors_config)
     app.config.update(config.get_sqlalchemy_settings)
     db.init_app(app)
     ma.init_app(app)
